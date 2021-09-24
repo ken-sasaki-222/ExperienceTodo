@@ -9,11 +9,15 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-
+    private var todoList = [String]()
+    private var userDefaults = UserDefaults.standard
+    private var userDefaultskey = "todoList"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setTableView()
+        refreshTodoList()
         setNavigation()
+        setTableView()
     }
     
     private func setNavigation() {
@@ -32,8 +36,28 @@ class ViewController: UIViewController {
         tableView.dataSource = self
     }
     
+    private func refreshTodoList() {
+        guard let todoList = userDefaults.object(forKey: userDefaultskey) as? [String] else {
+            return
+        }
+        self.todoList = todoList
+    }
+    
     @IBAction func tapAddButton(_ sender: Any) {
-        print("追加")
+        let alert = UIAlertController(title: "やることを追加", message: "やることを入力してください", preferredStyle: .alert)
+        alert.addTextField(configurationHandler: nil)
+        let okAction = UIAlertAction(title: "追加", style: .default) { _ in
+            guard let newTodo = alert.textFields?.first?.text else {
+                return
+            }
+            self.todoList.insert(newTodo, at: 0)
+            self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .top)
+            self.userDefaults.set(self.todoList, forKey: self.userDefaultskey)
+        }
+        alert.addAction(okAction)
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
     }
     
 
@@ -41,15 +65,26 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return todoList.count
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            todoList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let todoText = cell.viewWithTag(1) as? UILabel
-        todoText?.text = "散歩行く"
-        
+        todoText?.text = todoList[indexPath.row]
+        userDefaults.set(self.todoList, forKey: self.userDefaultskey)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
 }
 
