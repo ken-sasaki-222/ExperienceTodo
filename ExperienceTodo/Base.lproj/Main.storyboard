@@ -17,9 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GGe-Lp-gxH">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GGe-Lp-gxH">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="45" id="osd-ow-Xlq">
                                         <rect key="frame" x="20" y="49.5" width="374" height="45"/>
@@ -28,14 +27,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ここにやることを書く" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCj-4T-CXi">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ここにやることを書く" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCj-4T-CXi">
                                                     <rect key="frame" x="23" y="6" width="256" height="34"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="fCj-4T-CXi" secondAttribute="bottom" constant="5" id="GDN-W6-dev"/>
+                                                <constraint firstItem="fCj-4T-CXi" firstAttribute="top" secondItem="pWj-OG-fE2" secondAttribute="top" constant="6" id="H9C-Al-x0J"/>
+                                                <constraint firstItem="fCj-4T-CXi" firstAttribute="leading" secondItem="pWj-OG-fE2" secondAttribute="leading" constant="23" id="Ohg-Ed-gLz"/>
+                                                <constraint firstAttribute="trailing" secondItem="fCj-4T-CXi" secondAttribute="trailing" constant="95" id="rNY-fj-tuL"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -43,6 +47,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemTealColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="GGe-Lp-gxH" secondAttribute="bottom" id="0oe-6h-pI3"/>
+                            <constraint firstItem="GGe-Lp-gxH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ox2-tE-5gN"/>
+                            <constraint firstItem="GGe-Lp-gxH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="pVN-fa-QlZ"/>
+                            <constraint firstItem="GGe-Lp-gxH" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="tGI-sL-KVW"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="やることリスト" id="h5v-8U-JFN">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="ASp-Xk-7kr">
