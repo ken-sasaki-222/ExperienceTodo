@@ -72,6 +72,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             todoList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            userDefaults.set(self.todoList, forKey: self.userDefaultskey)
         }
     }
     
@@ -79,7 +80,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let todoText = cell.viewWithTag(1) as? UILabel
         todoText?.text = todoList[indexPath.row]
-        userDefaults.set(self.todoList, forKey: self.userDefaultskey)
         return cell
     }
     
