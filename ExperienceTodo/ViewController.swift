@@ -44,7 +44,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func tapAddButton(_ sender: Any) {
-        let alert = UIAlertController(title: "やることを追加", message: "やることを入力してください", preferredStyle: .alert)
+        let alert = UIAlertController(title: "やることを追加",
+                                      message: "やることを入力してください",
+                                      preferredStyle: .alert)
         alert.addTextField(configurationHandler: nil)
         let okAction = UIAlertAction(title: "追加", style: .default) { _ in
             guard let newTodo = alert.textFields?.first?.text else {
@@ -55,18 +57,19 @@ class ViewController: UIViewController {
             self.userDefaults.set(self.todoList, forKey: self.userDefaultskey)
         }
         alert.addAction(okAction)
-        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "キャンセル",
+                                         style: .cancel,
+                                         handler: nil)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
-    
-
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoList.count
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
